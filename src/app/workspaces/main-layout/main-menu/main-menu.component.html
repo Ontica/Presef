@@ -1,0 +1,27 @@
+<div class="nav-bar">
+
+  <ul>
+
+    <li *empNgHasPermission="permissions.MENU_OPERACION_CONTABLE">
+      <a routerLink='/operacion-contable' routerLinkActive='selected' [routerLinkActiveOptions]="{exact:false}">
+        PÓLIZAS
+      </a>
+    </li>
+    <li *empNgHasPermission="permissions.MENU_OPERACION_CONTABLE">
+      <a>
+        PAGOS
+      </a>
+    </li>
+    <li *empNgHasPermission="permissions.MENU_OPERACION_CONTABLE">
+      <a>
+        SINIESTROS
+      </a>
+    </li>
+    <li *empNgHasPermission="permissions.MENU_OPERACION_CONTABLE">
+      <a>
+        COMISSIONES
+      </a>
+    </li>
+  </ul>
+
+</div>
