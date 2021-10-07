@@ -3,23 +3,23 @@
   <ul>
 
     <li *empNgHasPermission="permissions.MENU_OPERACION_CONTABLE">
-      <a routerLink='/operacion-contable' routerLinkActive='selected' [routerLinkActiveOptions]="{exact:false}">
+      <a routerLink='/polizas' routerLinkActive='selected' [routerLinkActiveOptions]="{exact:false}">
         PÓLIZAS
       </a>
     </li>
     <li *empNgHasPermission="permissions.MENU_OPERACION_CONTABLE">
-      <a>
+      <a routerLink='/pagos' routerLinkActive='selected' [routerLinkActiveOptions]="{exact:false}">
         PAGOS
       </a>
     </li>
     <li *empNgHasPermission="permissions.MENU_OPERACION_CONTABLE">
-      <a>
+      <a routerLink='/siniestros' routerLinkActive='selected' [routerLinkActiveOptions]="{exact:false}">
         SINIESTROS
       </a>
     </li>
     <li *empNgHasPermission="permissions.MENU_OPERACION_CONTABLE">
-      <a>
-        COMISSIONES
+      <a routerLink='/comisiones' routerLinkActive='selected' [routerLinkActiveOptions]="{exact:false}">
+        COMISIONES
       </a>
     </li>
   </ul>

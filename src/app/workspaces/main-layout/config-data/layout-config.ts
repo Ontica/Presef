@@ -8,28 +8,46 @@
 import { View, Layout } from '../common-models/common';
 
 import {
-  AccountingOperationViews,
+  InsuranceContractsViews,
+  PaymentsViews,
+  ClaimsViews,
+  CommissionsViews,
   UnauthorizedViews
 } from './views.config';
 
 
-export type LayoutType = 'AccountingOperation' | 'AccountingDashboards' | 'AccountingReports' |
-                         'AccountingCataloguesAndRules' | 'Management' | 'Unauthorized';
+export type LayoutType = 'InsuranceContracts' | 'Payments' | 'Claims' | 'Commissions';
 
 
-export const APP_VIEWS: View[] = AccountingOperationViews.concat(UnauthorizedViews);                                                                                                            
-                                                                 
+export const APP_VIEWS: View[] = InsuranceContractsViews.concat(PaymentsViews, ClaimsViews, CommissionsViews, UnauthorizedViews);
+
 
 
 export const APP_LAYOUTS: Layout[] = [
   {
-    name: 'AccountingOperation',
-    views: AccountingOperationViews,
-    hint: 'Registro de volantes y operación contable',
-    defaultTitle: 'Operación contable'
+    name: 'InsuranceContracts',
+    views: InsuranceContractsViews,
+    hint: 'Administración de pólizas y contratos',
+    defaultTitle: 'Administración de pólizas'
   },
-
-  
+  {
+    name: 'Payments',
+    views: PaymentsViews,
+    hint: 'Administración de pagos',
+    defaultTitle: 'Administración de pagos'
+  },
+  {
+    name: 'Claims',
+    views: ClaimsViews,
+    hint: 'Administración de siniestros',
+    defaultTitle: 'Administración de siniestros'
+  },
+  {
+    name: 'Commissions',
+    views: CommissionsViews,
+    hint: 'Administración de comisiones',
+    defaultTitle: 'Administración de comisiones'
+  },
   {
     name: 'Unauthorized',
     views: UnauthorizedViews,

@@ -17,8 +17,35 @@ import { MainLayoutComponent, NoContentComponent } from './workspaces/main-layou
 
 const routes: Routes = [
   {
-    data: { permission: ROUTES_LIBRARY.operacion_contable.permission },
-    path: ROUTES_LIBRARY.operacion_contable.path,
+    data: { permission: ROUTES_LIBRARY.insurance_contracts.permission },
+    path: ROUTES_LIBRARY.insurance_contracts.path,
+    component: MainLayoutComponent,
+    canActivate: [SecurityGuard],
+    canActivateChild: [SecurityGuard],
+    loadChildren: () => import('./workspaces/accounting-operations/accounting-operations-workspace.module')
+                              .then((m) => m.AccountingOperationsWorkspaceModule)
+  },
+  {
+    data: { permission: ROUTES_LIBRARY.payments.permission },
+    path: ROUTES_LIBRARY.payments.path,
+    component: MainLayoutComponent,
+    canActivate: [SecurityGuard],
+    canActivateChild: [SecurityGuard],
+    loadChildren: () => import('./workspaces/accounting-operations/accounting-operations-workspace.module')
+                              .then((m) => m.AccountingOperationsWorkspaceModule)
+  },
+  {
+    data: { permission: ROUTES_LIBRARY.claims.permission },
+    path: ROUTES_LIBRARY.claims.path,
+    component: MainLayoutComponent,
+    canActivate: [SecurityGuard],
+    canActivateChild: [SecurityGuard],
+    loadChildren: () => import('./workspaces/accounting-operations/accounting-operations-workspace.module')
+                              .then((m) => m.AccountingOperationsWorkspaceModule)
+  },
+  {
+    data: { permission: ROUTES_LIBRARY.commissions.permission },
+    path: ROUTES_LIBRARY.commissions.path,
     component: MainLayoutComponent,
     canActivate: [SecurityGuard],
     canActivateChild: [SecurityGuard],

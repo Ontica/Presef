@@ -8,18 +8,59 @@
 import { View } from '../common-models/common';
 
 
-export const AccountingOperationViews: View[] = [
+export const InsuranceContractsViews: View[] = [
   {
-    name: 'AccountingOperation.MyInbox',
-    title: 'Registro Poliza',
-    url: '/operacion-contable/mis-volantes-pendientes'
+    name: 'InsuranceContracts.Main',
+    title: 'Registro de pólizas',
+    url: '/polizas/registro'
   },
   {
-    name: 'AccountingOperation.MyInbox',
+    name: 'InsuranceContracts.Amends',
     title: 'Endosos',
-    url: '/operacion-contable/mis-volantes-pendientes'
+    url: '/polizas/endosos'
   },
+];
 
+
+export const PaymentsViews: View[] = [
+  {
+    name: 'Payments.Main',
+    title: 'Registro de pagos',
+    url: '/pagos/registro'
+  },
+  {
+    name: 'Payments.Receivables',
+    title: 'Cobranza',
+    url: '/pagos/cobranza'
+  },
+];
+
+
+export const ClaimsViews: View[] = [
+  {
+    name: 'Claims.Main',
+    title: 'Registro de siniestros',
+    url: '/siniestros/registro'
+  },
+  {
+    name: 'Claims.Payment',
+    title: 'Pago de siniestros',
+    url: '/siniestros/pagos'
+  },
+];
+
+
+export const CommissionsViews: View[] = [
+  {
+    name: 'Commissions.Main',
+    title: 'Pago de comisiones',
+    url: '/comisiones/estados-cuenta'
+  },
+  {
+    name: 'Commissions.Agents',
+    title: 'Registro de agentes',
+    url: '/comisiones/agentes'
+  }
 ];
 
 

@@ -16,13 +16,56 @@ import { AccountingOperationsWorkspaceComponent } from './accounting-operations-
 
 const routes: Routes = [
   {
-    data: { permission: ROUTES_LIBRARY.operacion_contable_mis_volantes_pendientes.permission },
-    path: ROUTES_LIBRARY.operacion_contable_mis_volantes_pendientes.path,
+    data: { permission: ROUTES_LIBRARY.insurance_contracts_contracts.permission },
+    path: ROUTES_LIBRARY.insurance_contracts_contracts.path,
     component: AccountingOperationsWorkspaceComponent,
   },
   {
+    data: { permission: ROUTES_LIBRARY.insurance_contracts_amends.permission },
+    path: ROUTES_LIBRARY.insurance_contracts_amends.path,
+    component: AccountingOperationsWorkspaceComponent,
+  },
+
+  {
+    data: { permission: ROUTES_LIBRARY.payments_main.permission },
+    path: ROUTES_LIBRARY.payments_main.path,
+    component: AccountingOperationsWorkspaceComponent,
+  },
+  {
+    data: { permission: ROUTES_LIBRARY.payments_receivables.permission },
+    path: ROUTES_LIBRARY.payments_receivables.path,
+    component: AccountingOperationsWorkspaceComponent,
+  },
+
+
+  {
+    data: { permission: ROUTES_LIBRARY.claims_main.permission },
+    path: ROUTES_LIBRARY.claims_main.path,
+    component: AccountingOperationsWorkspaceComponent,
+  },
+  {
+    data: { permission: ROUTES_LIBRARY.claims_payments.permission },
+    path: ROUTES_LIBRARY.claims_payments.path,
+    component: AccountingOperationsWorkspaceComponent,
+  },
+
+
+  {
+    data: { permission: ROUTES_LIBRARY.commissions_payments.permission },
+    path: ROUTES_LIBRARY.commissions_payments.path,
+    component: AccountingOperationsWorkspaceComponent,
+  },
+
+  {
+    data: { permission: ROUTES_LIBRARY.commissions_agents.permission },
+    path: ROUTES_LIBRARY.commissions_agents.path,
+    component: AccountingOperationsWorkspaceComponent,
+  },
+
+
+  {
     path: '',
-    redirectTo: ROUTES_LIBRARY.operacion_contable_mis_volantes_pendientes.path,
+    redirectTo: ROUTES_LIBRARY.insurance_contracts_contracts.path,
     pathMatch: 'full',
   }
 ];
