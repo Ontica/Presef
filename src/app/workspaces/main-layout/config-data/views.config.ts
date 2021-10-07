@@ -54,7 +54,7 @@ export const CommissionsViews: View[] = [
   {
     name: 'Commissions.Main',
     title: 'Pago de comisiones',
-    url: '/comisiones/estados-cuenta'
+    url: '/comisiones/registro'
   },
   {
     name: 'Commissions.Agents',
