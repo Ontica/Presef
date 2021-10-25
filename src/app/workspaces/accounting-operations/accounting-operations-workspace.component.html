@@ -1,13 +1,20 @@
 <emp-ng-spinner #spinner [visible]="isLoadingVoucher"></emp-ng-spinner>
 
 <div class="explorer" fxLayoutGap="32px">
-    
+    <div class="primary" [fxHide.lt-lg]="displayVoucherTabbedView">
+        <insurance-contract (createContractEvent)="onCreateContractEvent($event)"></insurance-contract>       
+    </div>
 
+    
 </div>
 
 <emp-ng-modal-window *ngIf="displayOptionModalSelected"
                      [config]="{width:'920px'}">
 
-  
+                     
+<insurance-contract-creator (eventCloseCreateContract)="onEventCloseCreateContract($event)"></insurance-contract-creator>
+                     
+
+
 
 </emp-ng-modal-window>

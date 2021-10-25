@@ -16,6 +16,7 @@ import { MainUIStateSelector } from '@app/presentation/exported.presentation.typ
 import { View } from '../main-layout';
 
 import { ArrayLibrary } from '@app/shared/utils';
+import { Event } from '@angular/router';
 
 
 type AccountingOperationModalOptions = 'VoucherCreator' | 'VouchersImporter';
@@ -30,8 +31,8 @@ export class AccountingOperationsWorkspaceComponent implements OnInit, OnDestroy
   currentView: View;
 
   displayVoucherTabbedView = false;
-  displayOptionModalSelected: AccountingOperationModalOptions = null;
-
+  displayOptionModalSelected = null;
+  
   isLoading = false;
   isLoadingVoucher = false;
 
@@ -62,6 +63,14 @@ export class AccountingOperationsWorkspaceComponent implements OnInit, OnDestroy
 
   private onOptionModalClosed() {
     this.displayOptionModalSelected = null;
+  }
+
+  onCreateContractEvent(envent: EventInfo) {
+    this.displayOptionModalSelected = true;
+  }
+
+  onEventCloseCreateContract(event: EventInfo) {
+    this.displayOptionModalSelected = false;
   }
 
 }

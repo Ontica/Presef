@@ -14,6 +14,8 @@ import { AngularFlexLayoutModule } from '@app/shared/angular-flex-layout.module'
 
 import { SharedModule } from '@app/shared/shared.module';
 
+import { InsuranceContractModule } from '@app/views/insurance-contracts/insurance-contracts.module';
+
 import { AccountingOperationsWorkspaceComponent } from './accounting-operations-workspace.component';
 import { AccountingOperationsWorkspaceRoutingModule } from './accounting-operations-workspace-routing.module';
 
@@ -27,6 +29,7 @@ import { AccountingOperationsWorkspaceRoutingModule } from './accounting-operati
     AngularMaterialModule,
     AngularFlexLayoutModule,
     SharedModule,
+    InsuranceContractModule,
 
     AccountingOperationsWorkspaceRoutingModule   
   ],
