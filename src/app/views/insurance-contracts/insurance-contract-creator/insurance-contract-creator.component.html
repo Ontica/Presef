@@ -28,6 +28,86 @@
         </div>
 
         <div fxLayout="row" fxLayout.lt-md="column">
+          <div fxFlex="400px">
+            <label>Domicilio:</label>
+            <textarea class="text-area" empNgTextareaAutoresize rows="1"
+              [formControlName]="controls.address">  
+          </textarea>
+          </div>
+          <div fxFlex="215px">
+            <label for="city">Ciudad:</label>
+            <input type="text" id="city" class="text-box"
+            [formControlName]="controls.city">
+            
+          </div>
+          <div fxFlex="200px">
+            <label for="state">Estado:</label>
+            <input type="text" id="state" class="text-box"
+            [formControlName]="controls.state">
+          </div>
+          
+        </div>
+
+        <div fxLayout="row" fxLayout.lt-md="column">
+          <div fxFlex="100px">
+            <label for="cp">Códgio postal:</label>
+            <input type="text" id="cp" class="text-box"
+            [formControlName]="controls.zip">
+          </div>
+          
+          <div fxFlex="130px" fxFlex.lt-md="none">
+            <label>Fecha de nacimiento:</label>
+            <emp-ng-datepicker
+              [formControlName]="controls.dateOfBirth"
+              [showError]="">
+  
+            </emp-ng-datepicker>
+          </div>
+          <div fxFlex="170px">
+          <label>Sexo:</label>
+          <emp-ng-select  
+            [config]="{clearable: true}"      
+            [formControlName]="controls.gender"  
+            [items]="[{uid: '1', name: 'Masculino'}, {uid: '2',name: 'Femenino'} ]" 
+           >            
+          </emp-ng-select>
+        </div>
+          <div fxFlex="200px">
+            <label>RFC:</label>
+            <input type="rfc" id="rfc" class="text-box"
+            [formControlName]="controls.RFC">
+          
+          </div>
+          <div fxFlex="215px">
+            <label for="curp">CURP:</label>
+            <input type="text" id="curp" class="text-box"
+            [formControlName]="controls.CURP">
+            
+          </div>          
+          
+        </div>
+
+        <div fxLayout="row" fxLayout.lt-md="column">
+          <div fxFlex="215px">
+            <label>INE:</label>
+            <input type="rfc" id="rfc" class="text-box"
+            [formControlName]="controls.INE">
+          </div>
+          <div fxFlex="300px">
+            <label>Tel particular:</label>
+            <input type="rfc" id="rfc" class="text-box"
+            [formControlName]="controls.phone">
+          </div>
+          <div fxFlex="300px">
+            <label>Celular:</label>
+            <input type="rfc" id="rfc" class="text-box"
+            [formControlName]="controls.cellPhone">
+          </div>
+        </div>
+      
+      <mat-divider class="horizontal"></mat-divider>
+
+        <div fxLayout="row" fxLayout.lt-md="column">
 
           <div fxFlex="400px">
             <label>Tipo de plan:</label>
@@ -37,24 +117,29 @@
               [items]="contractTypes">            
             </emp-ng-select>
           </div>
-          <div [fxFlex]="100/3">
-            <label>Forma de Pago:</label>
+          <div fxFlex="415px">
+            <label>Forma de pago:</label>
             <emp-ng-select  
               [config]="{clearable: true}"            
               [formControlName]="controls.paymentType"                   
               [items]="paymentTypes">            
             </emp-ng-select>
-          </div>
-          <div fxFlex="130px" fxFlex.lt-md="none">
-            <label>Fecha valor:</label>
-            <emp-ng-datepicker
-              [formControlName]="controls.contractDate"
-              [showError]="">
-  
-            </emp-ng-datepicker>
-          </div>
+         </div>         
 
-      </div>
+        </div>
+
+        <div fxLayout="row" fxLayout.lt-md="column">
+
+          <div fxFlex="815px">
+            <label>Persona designada:</label>
+            <input type="text" class="text-box"
+            [formControlName]="controls.beneficiary">
+          </div>
+              
+
+        </div>
+
+
 
         <mat-divider class="horizontal"></mat-divider>
 

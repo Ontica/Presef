@@ -11,21 +11,31 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { FormHandler, sendEvent } from '@app/shared/utils';
 import { Assertion } from '@app/core';
-import { validateBasis } from '@angular/flex-layout';
-import { Contract } from '@app/models/contract';
+import { InsuranceRequest, ContractTypes, PaymentTypes } from '@app/models/contract';
   
-export interface Item {
-  uid: string
-  name: string
-}
+
 
 enum InsuranceContractSetCreatorFormControls {
   contractor = 'contractor',
+  address = 'address',
+  city =  'city',
+  state =  'state',
+  zip = 'zip',
+  dateOfBirth = 'dateOfBirth',
+  gender = 'gender',  
+  RFC = 'RFC',
+  CURP = 'CURP',
+  INE =  'INE',
+  phone =  'phone',
+  cellPhone =  'cellPhone',  
   email = 'email',
   contractType = 'contractType',
   paymentType = 'paymentType',
-  contractDate = 'contractDate'
+  contractDate = 'contractDate',
+  beneficiary =  'beneficiary'
 }
+
+
  @Component({
    selector: 'insurance-contract-creator',
    templateUrl: './insurance-contract-creator.component.html',
@@ -36,16 +46,13 @@ enum InsuranceContractSetCreatorFormControls {
 
   @Output() eventCloseCreateContract = new EventEmitter();
 
-  contractTypes: Item[] =[ {uid: '1', name: 'Escencial'}, {uid: '2',name: 'Escencial +'},
-                   {uid: '3', name: 'Óptimo'}, {uid: '4',name: 'Plus'}, {uid: '5', name:'Plus +'}];
-  paymentTypes: Item[] = [ {uid: '1', name: 'Pago vía nómina'}, {uid: '2',name: 'Deposito bancario'},
-                           {uid: '3', name: 'Pago en OXXO'}, {uid: '4',name: 'Otro medio'}];
-  
-  
+  contractTypes = ContractTypes;
+  paymentTypes = PaymentTypes;
+    
   formHandler: FormHandler;
   controls =  InsuranceContractSetCreatorFormControls;
 
-  contract: Contract;
+  contract: InsuranceRequest;
 
   constructor() {
     this.initForm();
@@ -57,7 +64,7 @@ enum InsuranceContractSetCreatorFormControls {
 
   onSave() {    
     this.contract = this.getFormData();
-    console.warn(this.contract);
+      console.warn(this.contract);
     this.eventCloseCreateContract.emit();
   }
    
@@ -73,28 +80,52 @@ enum InsuranceContractSetCreatorFormControls {
     this.formHandler = new FormHandler(
       new FormGroup({
         contractor : new FormControl(''),
+        address : new FormControl(''), 
+        city : new FormControl(''),
+        state : new FormControl(''),
+        zip : new FormControl(''),
+        dateOfBirth : new FormControl(''),
+        gender : new FormControl(''),
+        RFC : new FormControl(''),
+        CURP : new FormControl(''),
+        INE : new FormControl(''),
+        phone : new FormControl(''),
+        cellPhone : new FormControl(''),     
         email: new FormControl(''),
-        contractType: new FormControl(''),
-        paymentType: new FormControl(''),
-        contractDate: new FormControl('')
+        contractType : new FormControl(''),
+        paymentType : new FormControl(''),
+        contractDate : new FormControl(''),
+        beneficiary : new FormControl('')
       })
     );
   }
 
-  private getFormData(): any {
+  private getFormData(): InsuranceRequest {
     Assertion.assert(this.formHandler.form.valid,
       'Programming error: form must be validated before command execution.');
 
     const formModel = this.formHandler.form.getRawValue();
 
-    const data: any = {
-      contractor: formModel.contractor?? '',
-      email: formModel.email ?? '',
-      contractType: formModel.contractType ?? '',
-      paymentType: formModel.paymentType ?? '',
-      contractDate: formModel.contractDate ?? ''
-    };
-
+    const data: InsuranceRequest = {
+      contractor :  {
+        name : formModel.contractor ?? '',
+        address : formModel.address ?? '',
+        city :  formModel.city ?? '',
+        state : formModel.state ?? '',
+        zip : formModel.zip ?? '',     
+        gender :formModel.gender ?? '',  
+        RFC : formModel.RFC ?? '',
+        CURP : formModel.CURP ?? '',
+        INE : formModel.INE ?? '',
+        phone : formModel.phone ?? '',
+        cellPhone : formModel.cellPhone ?? '',
+        email : formModel.email ?? '',
+      },
+      contractType : formModel.contractType ?? '',
+      paymentType : formModel.paymentType ?? '',
+      beneficiary : formModel.beneficiary ?? ''        
+      };  
+    
     return data;
   }
 
