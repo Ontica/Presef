@@ -1,11 +1,15 @@
-export interface InsuranceRequest {
-    contractor: Contractor,    
+import { DateString } from "@app/core";
+
+
+export interface ContractFields {
+    contractor: PartyFields,    
     contractType: string;
     paymentType: string,   
-    beneficiary: string
+    beneficiary: PartyFields,
+    contractStartDate: string
   }
 
-export interface Contractor {
+export interface PartyFields {
   name: string,
   address: string,
   city: string,
@@ -35,7 +39,11 @@ export const PaymentTypes: Item[] = [ {uid: '1', name: 'Pago vía nómina'},
                                       {uid: '3', name: 'Pago en OXXO'}, 
                                       {uid: '4',name: 'Otro medio'}];
 
-
-
-
-  
+export interface Contract { 
+  contractTrackUID: string,
+  contractType: string,
+  contractNo: string,
+  contractStatus: string,
+  startDate: DateString,
+  endDate: DateString
+}

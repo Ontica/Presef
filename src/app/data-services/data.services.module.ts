@@ -7,6 +7,8 @@
 
 import { NgModule } from '@angular/core';
 
+import { ContractDataService } from './contract.data.service';
+
 import { FileDownloadService } from './file-services/file-download.service';
 import { getSaver, SAVER } from './file-services/saver.provider';
 
@@ -14,6 +16,7 @@ import { getSaver, SAVER } from './file-services/saver.provider';
 @NgModule({
 
   providers: [  
+    ContractDataService,
     FileDownloadService,
    
     { provide: SAVER, useFactory: getSaver }

@@ -11,7 +11,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { FormHandler, sendEvent } from '@app/shared/utils';
 import { Assertion } from '@app/core';
-import { InsuranceRequest, ContractTypes, PaymentTypes } from '@app/models/contract';
+import { ContractFields, ContractTypes, PaymentTypes } from '@app/models/contract';
+import { Alert } from 'selenium-webdriver';
+import { ContractDataService } from '@app/data-services/contract.data.service';
   
 
 
@@ -52,9 +54,9 @@ enum InsuranceContractSetCreatorFormControls {
   formHandler: FormHandler;
   controls =  InsuranceContractSetCreatorFormControls;
 
-  contract: InsuranceRequest;
+  contract: ContractFields;
 
-  constructor() {
+  constructor(private contractDataService: ContractDataService) {
     this.initForm();
   }
 
@@ -62,10 +64,13 @@ enum InsuranceContractSetCreatorFormControls {
     
   } 
 
-  onSave() {    
-    this.contract = this.getFormData();
-      console.warn(this.contract);
+  onSave() {  
+     this.contract = this.getFormData();  
+
+      this.contractDataService.createContract(this.contract).
+            subscribe(x => alert("Polizada Creada"));
     this.eventCloseCreateContract.emit();
+
   }
    
   onClose() {   
@@ -100,13 +105,13 @@ enum InsuranceContractSetCreatorFormControls {
     );
   }
 
-  private getFormData(): InsuranceRequest {
+  private getFormData(): ContractFields {
     Assertion.assert(this.formHandler.form.valid,
       'Programming error: form must be validated before command execution.');
 
     const formModel = this.formHandler.form.getRawValue();
 
-    const data: InsuranceRequest = {
+    const data: ContractFields = {
       contractor :  {
         name : formModel.contractor ?? '',
         address : formModel.address ?? '',
@@ -122,8 +127,23 @@ enum InsuranceContractSetCreatorFormControls {
         email : formModel.email ?? '',
       },
       contractType : formModel.contractType ?? '',
-      paymentType : formModel.paymentType ?? '',
-      beneficiary : formModel.beneficiary ?? ''        
+      paymentType : formModel.paymentType ?? '',      
+      contractStartDate: new Date().toString(),
+      beneficiary : {
+        name: formModel.beneficiary ?? '',
+        address : '',
+        city :  '',
+        state : '',
+        zip : '',
+        gender :'',
+        RFC : '',
+        CURP : '',
+        INE : '',
+        phone : '',
+        cellPhone : '',
+        email : '',
+      }    
+
       };  
     
     return data;
