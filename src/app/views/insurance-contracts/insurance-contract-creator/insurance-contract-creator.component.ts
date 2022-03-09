@@ -48,7 +48,7 @@ enum InsuranceContractSetCreatorFormControls {
 
   @Output() eventCloseCreateContract = new EventEmitter();
 
-  contractTypes = ContractTypes;
+  contractTypes: ContractTypes[] = [];
   paymentTypes = PaymentTypes;
     
   formHandler: FormHandler;
@@ -61,7 +61,7 @@ enum InsuranceContractSetCreatorFormControls {
   }
 
   ngOnInit(): void { 
-    
+    this.getContractTypes();
   } 
 
   onSave() {  
@@ -70,7 +70,7 @@ enum InsuranceContractSetCreatorFormControls {
       this.contractDataService.createContract(this.contract).
             subscribe(x => alert("Polizada Creada"));
     this.eventCloseCreateContract.emit();
-
+   
   }
    
   onClose() {   
@@ -105,6 +105,12 @@ enum InsuranceContractSetCreatorFormControls {
     );
   }
 
+  private getContractTypes(): void {
+
+    this.contractDataService.getContractTypes()
+      .subscribe(x => this.contractTypes = x);
+  }
+
   private getFormData(): ContractFields {
     Assertion.assert(this.formHandler.form.valid,
       'Programming error: form must be validated before command execution.');
@@ -112,7 +118,7 @@ enum InsuranceContractSetCreatorFormControls {
     const formModel = this.formHandler.form.getRawValue();
 
     const data: ContractFields = {
-      contractTypeUID : '5f4a96c9-2414-4d61-819a-2e5613f99520',//formModel.contractType ?? '',
+      contractTypeUID : formModel.contractType ?? '',
       paymentType : formModel.paymentType ?? '',      
       startDate: new Date().toString(),
       parties: this.getFormParties()
@@ -126,7 +132,7 @@ enum InsuranceContractSetCreatorFormControls {
 
   parties.push(this.getContractorFormData());  
   parties.push(this.getBeneficiaryFormData());
-  
+
   return parties;
   }
 

@@ -1,4 +1,5 @@
-import { DateString } from "@app/core";
+import { DateString, Identifiable } from "@app/core";
+
 
 
 export interface ContractFields {    
@@ -30,9 +31,8 @@ export interface Item {
   name: string
 }
 
-export const ContractTypes: Item[] =[ {uid: '1', name: 'Escencial'}, 
-                                      {uid: '3', name: 'Óptimo'},
-                                      {uid: '4', name: 'Plus'}];
+export interface ContractTypes extends Identifiable {}
+
 
 export const PaymentTypes: Item[] = [ {uid: '1', name: 'Pago vía nómina'}, 
                                       {uid: '2',name: 'Deposito bancario'},
