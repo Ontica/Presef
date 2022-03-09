@@ -1,12 +1,11 @@
 import { DateString } from "@app/core";
 
 
-export interface ContractFields {
-    contractor: PartyFields,    
-    contractType: string;
+export interface ContractFields {    
+    contractTypeUID: string;
     paymentType: string,   
-    beneficiary: PartyFields,
-    contractStartDate: string
+    startDate: string,
+    parties: PartyFields[] 
   }
 
 export interface PartyFields {
@@ -21,8 +20,9 @@ export interface PartyFields {
   RFC: string,
   CURP:string,
   INE: string,
-  phone: string,
-  cellPhone: string,  
+  phoneNumber: string,
+  cellPhoneNumber: string,
+  TypeId: number 
 }
 
 export interface Item {
