@@ -24,9 +24,15 @@ export class ContractDataService {
   }
 
 
-  getContractTypes(): Observable<ContractTypes[]> {
-  
-    const path = `/v1/insurtech/contracttypes/`;
+  getContracts(): Observable<Contract[]> {
+    const path = `v1/insurtech/contracts`;
+
+    return this.http.get<Contract[]>(path);
+  }
+
+
+  getContractTypes(): Observable<ContractTypes[]> {  
+    const path = `/v1/insurtech/contract-types/`;
 
     return this.http.get<ContractTypes[]>(path);
   }
