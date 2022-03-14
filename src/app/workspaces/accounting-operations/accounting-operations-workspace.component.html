@@ -2,7 +2,19 @@
 
 <div class="explorer" fxLayoutGap="32px">
     <div class="primary" [fxHide.lt-lg]="displayVoucherTabbedView">
-        <insurance-contract (createContractEvent)="onCreateContractEvent($event)"></insurance-contract>       
+        <insurance-contract (createContractEvent)="onCreateContractEvent($event)" (selectedContractEvent)="onSelectedContractEvent($event)"></insurance-contract>       
+    </div>
+
+    <div class="secondary" *ngIf="selected">
+    
+        <emp-ng-card 
+        title="Nuevo grupo de saldos"
+        hint='Información general del grupo de saldos.'
+        (cardClose)="onClose()">
+        <div class="card-header-flat"></div>        
+        
+        </emp-ng-card>
+
     </div>
 
     
@@ -12,7 +24,7 @@
                      [config]="{width:'920px'}">
 
                      
-<insurance-contract-creator (eventCloseCreateContract)="onEventCloseCreateContract($event)"></insurance-contract-creator>
+<insurance-contract-creator  (eventCloseCreateContract)="onEventCloseCreateContract($event)"></insurance-contract-creator>
                      
 
 

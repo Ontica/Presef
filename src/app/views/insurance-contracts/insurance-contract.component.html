@@ -47,14 +47,13 @@
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr
                   mat-row
-                  (click)="onClickListItem(row)"
-                  [class.demo-row-is-clicked]="clickedRows.has(row)"
+                  (click)="onClickListItem(row)"                  
+                  [ngClass]="{ 'row-is-clicked': row.contractNo === selectedRow.contractNo}"
                   *matRowDef="let row; columns: displayedColumns;"
               ></tr>
         </table>
     </div>
-    
-    
+ 
    
     
 </div>

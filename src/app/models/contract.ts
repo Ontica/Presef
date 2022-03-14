@@ -47,3 +47,12 @@ export interface Contract {
   startDate: DateString,
   endDate: DateString
 }
+
+export const EmptyContract: Contract = {
+  contractTrackUID: '',
+  contractType: '',
+  contractNo: '',
+  contractStatus: '',
+  startDate: '01-01-1900',
+  endDate: '01-01-1900'
+}

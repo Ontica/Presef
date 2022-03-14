@@ -18,6 +18,7 @@ import { View } from '../main-layout';
 import { ArrayLibrary } from '@app/shared/utils';
 import { Event } from '@angular/router';
 
+import { Contract } from '@app/models/contract';
 
 type AccountingOperationModalOptions = 'VoucherCreator' | 'VouchersImporter';
 
@@ -40,6 +41,9 @@ export class AccountingOperationsWorkspaceComponent implements OnInit, OnDestroy
 
   displayExportModal = false;
   excelFileUrl = '';
+
+  selected = false;
+
 
   constructor(private uiLayer: PresentationLayer) {
     this.subscriptionHelper = uiLayer.createSubscriptionHelper();
@@ -65,12 +69,21 @@ export class AccountingOperationsWorkspaceComponent implements OnInit, OnDestroy
     this.displayOptionModalSelected = null;
   }
 
-  onCreateContractEvent(envent: EventInfo) {
+  onCreateContractEvent(envent: EventInfo) {    
     this.displayOptionModalSelected = true;
   }
 
-  onEventCloseCreateContract(event: EventInfo) {
-    this.displayOptionModalSelected = false;
+  onEventCloseCreateContract(event: EventInfo) {   
+    this.displayOptionModalSelected = false;   
   }
 
-}
+  onClose(): void {
+    this.selected = false;   
+  }
+
+  onSelectedContractEvent(event: EventInfo) {
+     this.selected = true;    
+  }
+
+
+ }

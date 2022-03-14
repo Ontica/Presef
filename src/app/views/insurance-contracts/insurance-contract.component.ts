@@ -10,20 +10,24 @@
  import { Assertion, EventInfo } from '@app/core';
  
  import { ContractDataService } from '@app/data-services/contract.data.service';
- import { Contract } from '@app/models/contract';
-  
+ import { Contract, EmptyContract } from '@app/models/contract';
+ 
 
  @Component({
    selector: 'insurance-contract',
    templateUrl: './insurance-contract.component.html',
+   styleUrls:['./insurance-contract.component.css']
  })
+ 
  export class InsuranceContractComponent implements OnInit {
  
    @Output() createContractEvent = new EventEmitter();
+   @Output() selectedContractEvent = new EventEmitter();
    
     displayedColumns: string[] = ['Poliza', 'Parties', 'ContractType', 'EmissionDate','Status'];
-    dataSource: Contract[];
-    clickedRows = new Set<Contract>();
+    dataSource : Contract[];
+    selectedRow =  EmptyContract;
+    
 
    constructor(private contractDataService: ContractDataService){}
 
@@ -32,13 +36,14 @@
       .subscribe(x => {this.dataSource = x; console.log(this.dataSource)});
    } 
 
-   onClickCreateContract(): void {
-    this.createContractEvent.emit();
+   onClickCreateContract(): void {     
+    this.createContractEvent.emit();      
    }
 
 
    onClickListItem(row: Contract) {
-
+     this.selectedRow = row;
+     this.selectedContractEvent.emit();    
    }
  
  

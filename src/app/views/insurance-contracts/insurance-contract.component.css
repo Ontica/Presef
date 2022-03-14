@@ -1,3 +1,4 @@
+
 .demo-table {
     width: 100%;
   }
@@ -12,6 +13,7 @@
     border-color: currentColor;
 }
   
-.demo-row-is-clicked {
-    font-weight: bold;
+.row-is-clicked {
+    font-weight:bolder;
+    font-style: italic;    
 }
