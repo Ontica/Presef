@@ -45,7 +45,8 @@ export interface Contract {
   contractNo: string,
   contractStatus: string,
   startDate: DateString,
-  endDate: DateString
+  endDate: DateString,
+  parties: Party[]
 }
 
 export const EmptyContract: Contract = {
@@ -54,5 +55,22 @@ export const EmptyContract: Contract = {
   contractNo: '',
   contractStatus: '',
   startDate: '01-01-1900',
-  endDate: '01-01-1900'
+  endDate: '01-01-1900',
+  parties: []
+}
+
+export interface Party {
+  address: string,
+  cellPhoneNumber: string,
+  curp: string,
+  dateOfBirth: DateString,
+  email: string,
+  gender: number,
+  ine: string,
+  name: string,
+  phoneNumber: string,
+  rfc: string,
+  typeId: number,
+  uid: string,
+  zip: string
 }
