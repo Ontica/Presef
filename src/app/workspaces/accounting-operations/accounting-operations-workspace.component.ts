@@ -44,12 +44,11 @@ export class AccountingOperationsWorkspaceComponent implements OnInit, OnDestroy
 
   contract?: Contract;
 
-  isContracListUpdated = false;
-
   title = "";
   @Output() selectContractEvent = new EventEmitter<EventInfo>();
 
-  constructor(private uiLayer: PresentationLayer, private contractDataService: ContractDataService) {
+  constructor(private uiLayer: PresentationLayer, 
+              private contractDataService: ContractDataService) {
     this.subscriptionHelper = uiLayer.createSubscriptionHelper();
   }
 
@@ -62,16 +61,7 @@ export class AccountingOperationsWorkspaceComponent implements OnInit, OnDestroy
   ngOnDestroy() {
     this.subscriptionHelper.destroy();
   }
-  
-
-  private setDisplayExportModal(display) {
-    this.displayExportModal = display;
-  }
-
-
-  private onOptionModalClosed() {
-    this.displayOptionModalSelected = null;
-  }
+ 
 
   private loadContractsList() {
 
@@ -97,8 +87,13 @@ export class AccountingOperationsWorkspaceComponent implements OnInit, OnDestroy
      this.title = this.contract.contractNo;
   }
 
-  onUpdateContract(): void {
-    this.isContracListUpdated = true;
+  onUpdateContract(contractFields: ContractFields): void {      
+    this.contractDataService.updateContract(contractFields).
+          subscribe(x => this.contract = x);
+          
+    this.loadContractsList();    
   }
 
  }
+
+ 

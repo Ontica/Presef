@@ -48,7 +48,7 @@ export class ContractEditorComponent implements OnInit, OnChanges {
   paymentTypes = PaymentTypes;
 
   @Input() contract?: Contract;
-  @Output() contractUpdatedEvent = new EventEmitter<void>();
+  @Output() contractUpdatedEvent = new EventEmitter<ContractFields>();
 
   constructor(private contractDataService: ContractDataService) { 
     this.initForm();
@@ -78,16 +78,12 @@ export class ContractEditorComponent implements OnInit, OnChanges {
 
 
   onSave() {  
-    let contract= this.getFormData();
-   
-      this.contractDataService.updateContract(contract).
-          subscribe(x =>{ this.contract = x;
-            this.isEditMode = true;
-      this.formHandler.disableForm(); 
-      this.contractUpdatedEvent.emit();
-          });
-      
-      
+   let contract= this.getFormData();
+
+   this.isEditMode = true;
+   this.formHandler.disableForm(); 
+
+   this.contractUpdatedEvent.emit(contract);   
   }
   
 
