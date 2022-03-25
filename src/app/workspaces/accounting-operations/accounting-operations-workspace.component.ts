@@ -5,7 +5,7 @@
  * See LICENSE.txt in the project root for complete license information.
  */
 
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, EventEmitter, Output} from '@angular/core';
 
 import { Assertion, EventInfo } from '@app/core';
 
@@ -15,13 +15,9 @@ import { MainUIStateSelector } from '@app/presentation/exported.presentation.typ
 
 import { View } from '../main-layout';
 
-import { ArrayLibrary } from '@app/shared/utils';
-import { Event } from '@angular/router';
-
-import { Contract } from '@app/models/contract';
+import { Contract, ContractFields } from '@app/models/contract';
 
 type AccountingOperationModalOptions = 'VoucherCreator' | 'VouchersImporter';
-
 
 @Component({
   selector: 'emp-fa-accounting-operations-workspace',
@@ -44,6 +40,12 @@ export class AccountingOperationsWorkspaceComponent implements OnInit, OnDestroy
 
   selected = false;
 
+  contract?: Contract;
+
+  isContracListUpdated = false;
+
+  title = "";
+  @Output() selectContractEvent = new EventEmitter<EventInfo>();
 
   constructor(private uiLayer: PresentationLayer) {
     this.subscriptionHelper = uiLayer.createSubscriptionHelper();
@@ -81,9 +83,14 @@ export class AccountingOperationsWorkspaceComponent implements OnInit, OnDestroy
     this.selected = false;   
   }
 
-  onSelectedContractEvent(event: EventInfo) {
-     this.selected = true;    
+  onSelectedContractEvent(event:  Contract) {
+     this.selected = true;  
+     this.contract = event;   
+     this.title = this.contract.contractNo;
   }
 
+  onUpdateContract(): void {
+    this.isContracListUpdated = true;
+  }
 
  }

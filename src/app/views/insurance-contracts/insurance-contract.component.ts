@@ -5,7 +5,7 @@
  * See LICENSE.txt in the project root for complete license information.
  */
 
- import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+ import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
 
  import { Assertion, EventInfo } from '@app/core';
  
@@ -19,10 +19,11 @@
    styleUrls:['./insurance-contract.component.css']
  })
  
- export class InsuranceContractComponent implements OnInit {
+ export class InsuranceContractComponent implements OnInit, OnChanges {
  
    @Output() createContractEvent = new EventEmitter();
    @Output() selectedContractEvent = new EventEmitter();
+   @Input() updateContractList = false;
    
     displayedColumns: string[] = ['Poliza', 'Parties', 'ContractType', 'EmissionDate','Status'];
     dataSource : Contract[];
@@ -32,9 +33,20 @@
    constructor(private contractDataService: ContractDataService){}
 
    ngOnInit(): void {
+     
      this.contractDataService.getContracts()
-      .subscribe(x => {this.dataSource = x; console.log(this.dataSource)});
+      .subscribe(x => {this.dataSource = x; });
    } 
+
+   ngOnChanges(changes: SimpleChanges): void {
+    
+    if (this.updateContractList) {
+      
+      this.contractDataService.getContracts()
+      .subscribe(x => {this.dataSource = x; });
+      
+    }
+   }
 
    onClickCreateContract(): void {     
     this.createContractEvent.emit();      
@@ -43,7 +55,7 @@
 
    onClickListItem(row: Contract) {
      this.selectedRow = row;
-     this.selectedContractEvent.emit();    
+     this.selectedContractEvent.emit(row);    
    }
  
  

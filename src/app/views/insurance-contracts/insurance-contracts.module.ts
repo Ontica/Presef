@@ -14,7 +14,8 @@
  import { SharedModule } from '@app/shared/shared.module';
  
  import { InsuranceContractComponent } from './insurance-contract.component';
- import { InsuranceContractCreatorComponent } from './insurance-contract-creator/insurance-contract-creator.component'; 
+ import { InsuranceContractCreatorComponent } from './insurance-contract-creator/insurance-contract-creator.component';
+import { ContractEditorComponent } from './contract-editor/contract-editor.component'; 
 
  @NgModule({
    imports: [
@@ -28,9 +29,11 @@
    declarations: [
      InsuranceContractComponent,
      
-     InsuranceContractCreatorComponent
+     InsuranceContractCreatorComponent,
+     ContractEditorComponent
    ],
    exports: [
+    ContractEditorComponent,
     InsuranceContractComponent,
     InsuranceContractCreatorComponent
    ]
