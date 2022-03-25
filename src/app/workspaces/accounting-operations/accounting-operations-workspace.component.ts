@@ -16,6 +16,7 @@ import { MainUIStateSelector } from '@app/presentation/exported.presentation.typ
 import { View } from '../main-layout';
 
 import { Contract, ContractFields } from '@app/models/contract';
+import { ContractDataService } from '@app/data-services/contract.data.service';
 
 type AccountingOperationModalOptions = 'VoucherCreator' | 'VouchersImporter';
 
@@ -36,7 +37,8 @@ export class AccountingOperationsWorkspaceComponent implements OnInit, OnDestroy
   subscriptionHelper: SubscriptionHelper;
 
   displayExportModal = false;
-  excelFileUrl = '';
+ 
+  contractsList: Contract[];
 
   selected = false;
 
@@ -47,12 +49,13 @@ export class AccountingOperationsWorkspaceComponent implements OnInit, OnDestroy
   title = "";
   @Output() selectContractEvent = new EventEmitter<EventInfo>();
 
-  constructor(private uiLayer: PresentationLayer) {
+  constructor(private uiLayer: PresentationLayer, private contractDataService: ContractDataService) {
     this.subscriptionHelper = uiLayer.createSubscriptionHelper();
   }
 
 
   ngOnInit() {
+   this.loadContractsList();
   }
 
 
@@ -63,12 +66,17 @@ export class AccountingOperationsWorkspaceComponent implements OnInit, OnDestroy
 
   private setDisplayExportModal(display) {
     this.displayExportModal = display;
-    this.excelFileUrl = '';
   }
 
 
   private onOptionModalClosed() {
     this.displayOptionModalSelected = null;
+  }
+
+  private loadContractsList() {
+
+    this.contractDataService.getContracts()
+      .subscribe(x => {this.contractsList = x; });
   }
 
   onCreateContractEvent(envent: EventInfo) {    
