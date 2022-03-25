@@ -153,7 +153,7 @@ enum InsuranceContractSetCreatorFormControls {
       phoneNumber : formModel.phone ?? '',
       cellPhoneNumber : formModel.cellPhone ?? '',
       email : formModel.email ?? '',
-      TypeId: 1
+      typeId: 1
     }
     
     return party;
@@ -176,7 +176,7 @@ enum InsuranceContractSetCreatorFormControls {
       phoneNumber : '',
       cellPhoneNumber : '',
       email : '',
-      TypeId: 2
+      typeId: 2
     }
   
     return party;
