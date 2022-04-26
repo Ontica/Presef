@@ -9,6 +9,15 @@
       <div fxLayout="column" fxLayout.lt-md="column" fxLayoutGap="0.75rem" fxLayoutGap.lt-md="0">
 
         <div fxLayout="row" fxLayout.lt-md="column" *ngIf="isEditMode">
+
+          <div fxFlex fxLayoutAlign="start center"  *ngIf="contract.contractStatus === 'C'">
+            
+            <button type="submit"  class="btn-secondary"
+                (click)="onDelete()">
+                Eliminar
+              </button>
+          </div>
+         
           <div fxFlex fxLayoutAlign="end center">
               <button type="submit"  class="btn-action"
                 (click)="onEdit()">

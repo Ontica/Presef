@@ -24,6 +24,13 @@ export class ContractDataService {
   }
 
 
+  deleteContract(uid: string): Observable<any> {
+    const path =  `v1/insurtech/contracts/${uid}`;
+
+    return this.http.delete(path);
+  }
+
+
   getContracts(): Observable<Contract[]> {
     const path = `v1/insurtech/contracts`;
 

@@ -88,6 +88,13 @@ export class AccountingOperationsWorkspaceComponent implements OnInit, OnDestroy
     this.selected = false;   
   }
 
+  onDeleteContract(uid: string) {
+    this.contractDataService.deleteContract(uid).subscribe( x=> {alert("Borrado")});
+    this.selected = false;
+    this.loadContractsList();
+    
+  }
+
   onSelectedContractEvent(event:  Contract) {
      this.selected = true;  
      this.contract = event;   

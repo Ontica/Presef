@@ -14,7 +14,7 @@
         <div class="card-header-flat"></div>        
        
         <mat-tab-group>
-            <mat-tab label="Informacion"> <app-contract-editor [contract]="contract" (contractUpdatedEvent)="onUpdateContract($event)"></app-contract-editor> </mat-tab>
+            <mat-tab label="Informacion"> <app-contract-editor [contract]="contract" (contractUpdatedEvent)="onUpdateContract($event)" (contractDeletedEvent)="onDeleteContract($event)"></app-contract-editor> </mat-tab>
             <mat-tab label="Documentos"> Documentos </mat-tab>
             <mat-tab label="Poliza"> Poliza </mat-tab>
             <mat-tab label="Pagos">Pagos</mat-tab>

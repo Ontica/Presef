@@ -49,6 +49,7 @@ export class ContractEditorComponent implements OnInit, OnChanges {
 
   @Input() contract?: Contract;
   @Output() contractUpdatedEvent = new EventEmitter<ContractFields>();
+  @Output() contractDeletedEvent = new EventEmitter<string>();
 
   constructor(private contractDataService: ContractDataService) { 
     this.initForm();
@@ -62,15 +63,20 @@ export class ContractEditorComponent implements OnInit, OnChanges {
 
   ngOnChanges(): void {
     this.setFormModel();
+    console.log(this.contract);
   }
 
-  onCancel(){
+  onCancel() {
     this.formHandler.disableForm();
     this.setFormModel();
     this.isEditMode = true;
   }
 
-  onEdit(){
+  onDelete() {    
+    this.contractDeletedEvent.emit(this.contract.contractTrackUID);
+  }
+
+  onEdit() {
     this.formHandler.disableForm(false);
     this.isEditMode = false;
     this.disableControls();
