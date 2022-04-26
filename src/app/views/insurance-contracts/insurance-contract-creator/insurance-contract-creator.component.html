@@ -18,7 +18,8 @@
          <div fxFlex="400px">
               <label for="full-name">Nombre del Contratante:</label>
               <input type="text" id="full-name" class="text-box"
-               [formControlName]="controls.contractor">
+               [formControlName]="controls.contractor"
+               [class.invalid-control]="formHandler.showInvalidControl(controls.contractor)">
           </div>
           <div fxFlex="415px">
               <label for="email">Correo electrónico:</label>
@@ -31,19 +32,22 @@
           <div fxFlex="400px">
             <label>Domicilio:</label>
             <textarea class="text-area" empNgTextareaAutoresize rows="1"
-              [formControlName]="controls.address">  
+              [formControlName]="controls.address"
+              [class.invalid-control]="formHandler.showInvalidControl(controls.address)">
           </textarea>
           </div>
           <div fxFlex="215px">
             <label for="city">Ciudad:</label>
             <input type="text" id="city" class="text-box"
-            [formControlName]="controls.city">
+            [formControlName]="controls.city"
+            [class.invalid-control]="formHandler.showInvalidControl(controls.city)">
             
           </div>
           <div fxFlex="200px">
             <label for="state">Estado:</label>
             <input type="text" id="state" class="text-box"
-            [formControlName]="controls.state">
+            [formControlName]="controls.state"
+            [class.invalid-control]="formHandler.showInvalidControl(controls.state)">
           </div>
           
         </div>
@@ -52,14 +56,15 @@
           <div fxFlex="100px">
             <label for="cp">Código postal:</label>
             <input type="text" id="cp" class="text-box"
-            [formControlName]="controls.zip">
+            [formControlName]="controls.zip"
+            [class.invalid-control]="formHandler.showInvalidControl(controls.zip)">
           </div>
           
           <div fxFlex="130px" fxFlex.lt-md="none">
             <label>Fecha de nacimiento:</label>
             <emp-ng-datepicker
               [formControlName]="controls.dateOfBirth"
-              [showError]="">
+              [showError]="formHandler.showInvalidControl(controls.dateOfBirth)">
   
             </emp-ng-datepicker>
           </div>
@@ -69,7 +74,7 @@
             [config]="{clearable: true}"      
             [formControlName]="controls.gender"  
             [items]="[{uid: '1', name: 'Masculino'}, {uid: '2',name: 'Femenino'} ]" 
-           >            
+            [showError]="formHandler.showInvalidControl(controls.gender)">
           </emp-ng-select>
         </div>
           <div fxFlex="200px">
@@ -101,7 +106,8 @@
           <div fxFlex="300px">
             <label>Celular:</label>
             <input type="rfc" id="rfc" class="text-box"
-            [formControlName]="controls.cellPhone">
+            [formControlName]="controls.cellPhone"
+            [class.invalid-control]="formHandler.showInvalidControl(controls.cellPhone)">
           </div>
         </div>
       
@@ -114,15 +120,17 @@
             <emp-ng-select  
               [config]="{clearable: true}"        
               [formControlName]="controls.contractType"                              
-              [items]="contractTypes">            
+              [items]="contractTypes"
+              [showError]="formHandler.showInvalidControl(controls.contractType)">
             </emp-ng-select>
           </div>
           <div fxFlex="415px">
             <label>Forma de pago:</label>
             <emp-ng-select  
               [config]="{clearable: true}"            
-              [formControlName]="controls.paymentType"                   
-              [items]="paymentTypes">            
+              [formControlName]="controls.paymentType"
+              [items]="paymentTypes"
+              [showError]="formHandler.showInvalidControl(controls.paymentType)">
             </emp-ng-select>
          </div>         
 
@@ -133,7 +141,8 @@
           <div fxFlex="815px">
             <label>Persona designada (Beneficiaria):</label>
             <input type="text" class="text-box"
-            [formControlName]="controls.beneficiary">
+            [formControlName]="controls.beneficiary"
+            [class.invalid-control]="formHandler.showInvalidControl(controls.beneficiary)">
           </div>
               
 
@@ -145,7 +154,9 @@
 
         <div fxLayout="row" fxLayout.lt-md="column">
           <div fxFlex fxLayoutAlign="end center">
-              <button type="submit"  class="btn-action"
+              <button type="submit"
+                [class.btn-action]="formHandler.form.valid"
+                [disabled]="formHandler.form.invalid"
                 (click)="onSave()">
                 Guardar
               </button>

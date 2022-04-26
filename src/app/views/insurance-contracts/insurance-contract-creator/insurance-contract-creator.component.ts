@@ -81,23 +81,23 @@ enum InsuranceContractSetCreatorFormControls {
 
     this.formHandler = new FormHandler(
       new FormGroup({
-        contractor : new FormControl(''),
-        address : new FormControl(''), 
-        city : new FormControl(''),
-        state : new FormControl(''),
-        zip : new FormControl(''),
-        dateOfBirth : new FormControl(''),
-        gender : new FormControl(''),
+        contractor : new FormControl('', Validators.required),
+        address : new FormControl('', Validators.required), 
+        city : new FormControl('', Validators.required),
+        state : new FormControl('', Validators.required),
+        zip : new FormControl('', Validators.required),
+        dateOfBirth : new FormControl('', Validators.required),
+        gender : new FormControl('', Validators.required),
         RFC : new FormControl(''),
         CURP : new FormControl(''),
         INE : new FormControl(''),
         phone : new FormControl(''),
-        cellPhone : new FormControl(''),     
+        cellPhone : new FormControl('', Validators.required),     
         email: new FormControl(''),
-        contractType : new FormControl(''),
-        paymentType : new FormControl(''),
+        contractType : new FormControl('', Validators.required),
+        paymentType : new FormControl('', Validators.required),
         contractDate : new FormControl(''),
-        beneficiary : new FormControl('')
+        beneficiary : new FormControl('', Validators.required)
       })
     );
   }
