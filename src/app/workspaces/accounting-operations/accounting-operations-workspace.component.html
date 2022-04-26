@@ -29,11 +29,10 @@
 
 <emp-ng-modal-window *ngIf="displayOptionModalSelected"
                      [config]="{width:'920px'}">
-
                      
-<insurance-contract-creator  (eventCloseCreateContract)="onEventCloseCreateContract($event)"></insurance-contract-creator>
-                     
-
-
-
+    <insurance-contract-creator  
+        (eventCloseCreateContract)="onEventCloseCreateContract($event)"
+        (contractCreatorEvent)="onContractCreatorEvent($event)"
+    ></insurance-contract-creator>
+    
 </emp-ng-modal-window>

@@ -5,16 +5,15 @@
  * See LICENSE.txt in the project root for complete license information.
  */
 
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { FormHandler, sendEvent } from '@app/shared/utils';
 import { Assertion } from '@app/core';
+
 import { ContractFields, ContractTypes, PartyFields, PaymentTypes } from '@app/models/contract';
-import { Alert } from 'selenium-webdriver';
+
 import { ContractDataService } from '@app/data-services/contract.data.service';
-  
 
 
 enum InsuranceContractSetCreatorFormControls {
@@ -47,6 +46,7 @@ enum InsuranceContractSetCreatorFormControls {
   submitted = false;
 
   @Output() eventCloseCreateContract = new EventEmitter();
+  @Output() contractCreatorEvent = new EventEmitter<ContractFields>();
 
   contractTypes: ContractTypes[] = [];
   paymentTypes = PaymentTypes;
@@ -65,12 +65,9 @@ enum InsuranceContractSetCreatorFormControls {
   } 
 
   onSave() {  
-     this.contract = this.getFormData();  
-
-      this.contractDataService.createContract(this.contract).
-            subscribe(x => alert("Polizada Creada"));
-    this.eventCloseCreateContract.emit();
-   
+    this.contract = this.getFormData(); 
+     
+    this.contractCreatorEvent.emit(this.contract);   
   }
    
   onClose() {   

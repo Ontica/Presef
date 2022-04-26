@@ -77,6 +77,13 @@ export class AccountingOperationsWorkspaceComponent implements OnInit, OnDestroy
     this.displayOptionModalSelected = false;   
   }
 
+  onContractCreatorEvent(contract: ContractFields) {
+    this.contractDataService.createContract(contract).
+    subscribe(x => {  this.displayOptionModalSelected = false; 
+      this.loadContractsList(); });
+    
+  }
+
   onClose(): void {
     this.selected = false;   
   }
