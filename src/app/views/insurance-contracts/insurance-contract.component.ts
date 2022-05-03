@@ -26,12 +26,15 @@
    @Output() createContractEvent = new EventEmitter();
    
    @Output() selectedContractEvent = new EventEmitter();
+
+   @Output() searchContractEvent = new EventEmitter();
       
    
     displayedColumns: string[] = ['Poliza', 'Parties', 'ContractType', 'EmissionDate','Status'];
     dataSource : Contract[];
     selectedRow =  EmptyContract;
     
+    keywords = '';
 
    constructor(private contractDataService: ContractDataService){}
 
@@ -47,7 +50,10 @@
      this.selectedRow = row;
      this.selectedContractEvent.emit(row);    
    }
- 
+   
+   onSearchContract() {     
+     this.searchContractEvent.emit(this.keywords);
+   }
  
  }
  

@@ -95,6 +95,10 @@ export class AccountingOperationsWorkspaceComponent implements OnInit, OnDestroy
     
   }
 
+  onSearchContractEvent(keywords: string) {
+    this.contractDataService.searchContracts(keywords).subscribe( x => {this.contractsList = x; console.log(x); } )
+  }
+
   onSelectedContractEvent(event:  Contract) {
      this.selected = true;  
      this.contract = event;   

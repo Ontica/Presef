@@ -2,7 +2,9 @@
 
 <div class="explorer" fxLayoutGap="32px">
     <div class="primary" [fxHide.lt-lg]="displayVoucherTabbedView">
-        <insurance-contract [contractsList]="contractsList" (createContractEvent)="onCreateContractEvent($event)" (selectedContractEvent)="onSelectedContractEvent($event)"></insurance-contract>       
+        <insurance-contract [contractsList]="contractsList" (createContractEvent)="onCreateContractEvent($event)" 
+            (selectedContractEvent)="onSelectedContractEvent($event)" (searchContractEvent)="onSearchContractEvent($event)"
+        ></insurance-contract>       
     </div>
 
     <div class="secondary" *ngIf="selected">

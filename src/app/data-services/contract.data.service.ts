@@ -37,12 +37,20 @@ export class ContractDataService {
     return this.http.get<Contract[]>(path);
   }
 
-
+  
   getContractTypes(): Observable<ContractTypes[]> {  
     const path = `/v1/insurtech/contract-types/`;
 
     return this.http.get<ContractTypes[]>(path);
   }
+
+
+  searchContracts(keywords): Observable<Contract[]> {
+    const path =  `v1/insurtech/contracts/${keywords}`;
+
+    return this.http.get<Contract[]>(path);
+  }
+
 
   updateContract(contractFields: ContractFields): Observable<Contract>{
     Assertion.assertValue(contractFields, 'contractFields');
